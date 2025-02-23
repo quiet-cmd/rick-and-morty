@@ -3,16 +3,6 @@ import characters  from './assets/characters.json'
 import episodes from './assets/episode.json'
 import locations from './assets/location.json'
 
-const ROUTES = {
-  'main': '/',
-  'characters': '/characters',
-  'locations': '/locations',
-  'episodes': '/episodes',
-  'character': (id) => `${ROUTES.characters}/${id}`,
-  'location': (id) => `${ROUTES.location}/${id}`,
-  'episode': (id) => `${ROUTES.episodes}/${id}`,
-}
-
 function ListItem() {
   const { id } = useParams();
   const character = characters[Number(id) - 1];
