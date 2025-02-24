@@ -1,58 +1,22 @@
-import { Routes, Route, NavLink, Link, useParams, Navigate, useNavigate } from "react-router-dom"
-import characters  from './assets/characters.json'
-import episodes from './assets/episode.json'
-import locations from './assets/location.json'
-import { useAuth } from './providers/AuthProbider';
+import { lazy } from 'react';
+import { Routes, Route, NavLink } from 'react-router-dom'
+import { useAuth } from './providers/AuthProvider';
 import PrivateWrapper from './components/PrivateWrapper';
-
-function Logout() {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
-
-  const logoutHandler = () => {
-    logout();
-    navigate('/');
-  }
-
-  return (<button onClick={logoutHandler}> click me for logout</button>);
-}
-
-function Login() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
-
-  const loginHandler = () => {
-    login();
-    navigate(-2);
-  }
-
-  return (<button onClick={loginHandler}> click me for login</button>);
-}
-
-function ListItem() {
-  const { id } = useParams();
-  const character = characters[Number(id) - 1];
-
-  if (!character) {
-    return <Navigate to='/404' />;
-  }
-
-  const characterEntries = Object.entries(character);
-  return (
-    <ul>
-      {characterEntries.map(([key, value]) => (<li key={key}>{value}</li>))}
-    </ul>
-  );
-}
+import SuspenseWrapper from './components/SuspenseWrapper';
 
 function App() {
   const { isAuth } = useAuth();
 
-  const renderList = (list) => (
-    <ul>
-      {list.map(({id, name}) => (<li key={id}><Link to={`./${id}`}>{name}</Link></li>))}
-    </ul>
-  )
+  const MainPage = lazy(() => import('./pages/MainPage'))
+  const CharactersPage = lazy(() => import('./pages/CharactersPage'))
+  const LocationsPage = lazy(() => import('./pages/LocationsPage'))
+  const EpisodesPage = lazy(() => import('./pages/EpisodesPage'))
+  const LoginPage = lazy(() => import('./pages/LoginPage'))
+  const LogoutPage = lazy(() => import('./pages/LogoutPage'))
+  const CharacterDetailPage = lazy(() => import('./pages/CharacterDetailPage'))
+  const LocationDetailPage = lazy(() => import('./pages/LocationDetailPage'))
+  const EpisodeDetailPage = lazy(() => import('./pages/EpisodeDetailPage'))
+  const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
   return (
     <>
@@ -68,18 +32,20 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path='/' element={<p>main page</p>} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/logout' element={<Logout />} />
-        <Route element={<PrivateWrapper />}>
-          <Route path='/characters' element={renderList(characters)} />
-          <Route path='/characters/:id' element={<ListItem />} />
-          <Route path='/locations' element={renderList(locations)} />
-          <Route path='/locations/:id' element={<ListItem />} />
-          <Route path='/episodes' element={renderList(episodes)} />
-          <Route path='/episodes/:id' element={<ListItem />} />
+        <Route element={<SuspenseWrapper />}>
+          <Route path='/' element={<MainPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/logout' element={<LogoutPage />} />
+          <Route element={<PrivateWrapper />}>
+            <Route path='/characters' element={<CharactersPage />} />
+            <Route path='/characters/:id' element={<CharacterDetailPage />} />
+            <Route path='/locations' element={<LocationsPage />} />
+            <Route path='/locations/:id' element={<LocationDetailPage />} />
+            <Route path='/episodes' element={<EpisodesPage />} />
+            <Route path='/episodes/:id' element={<EpisodeDetailPage />} />
+          </Route>
+          <Route path='*' element={<NotFoundPage />} />
         </Route>
-        <Route path='*' element={<p>something wrong</p>} />
       </Routes>
     </>
   )
