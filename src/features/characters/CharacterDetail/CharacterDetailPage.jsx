@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
+import { Title } from '@mantine/core';
+import useFetch from '../../../hooks/useFetch';
 
 const CharacterDetailPage = () => {
   const { id } = useParams();
@@ -10,7 +11,7 @@ const CharacterDetailPage = () => {
 
   return data && (
     <div>
-      <h1>{data.name}</h1>
+      <Title order={1}>{data.name}</Title>
       <img src={data.image} alt={data.name} />
       <p>Status: {data.status}</p>
       <p>Species: {data.species}</p>
@@ -21,4 +22,4 @@ const CharacterDetailPage = () => {
   );
 };
 
-export default CharacterDetailPage; 
+export default CharacterDetailPage;

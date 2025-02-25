@@ -16,6 +16,10 @@ function useFetch(url) {
       }
       const responseData = await response.json();
 
+      if(responseData?.error) {
+        throw new Error('😒');
+      }
+
       setError(undefined);
 
       if(responseData?.info && data) {

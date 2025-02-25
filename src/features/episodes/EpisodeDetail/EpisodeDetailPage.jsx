@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
+import { Title } from '@mantine/core';
+import useFetch from '../../../hooks/useFetch';
 
 const EpisodeDetailPage = () => {
   const { id } = useParams();
@@ -10,7 +11,7 @@ const EpisodeDetailPage = () => {
 
   return data && (
     <div>
-      <h1>{data.name}</h1>
+      <Title order={1}>{data.name}</Title>
       <p>Air Date: {data.air_date}</p>
       <p>Episode: {data.episode}</p>
       <p>Characters: {data.characters.length}</p>

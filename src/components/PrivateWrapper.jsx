@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../providers/AuthProvider';
+import { useAuth } from '../features/auth';
 
 const PrivateWrapper = () => {
   const { isAuth } = useAuth();

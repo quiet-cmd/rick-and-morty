@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Title } from '@mantine/core';
 
 class ErrorBoundary extends Component {
   constructor(props) {

@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
+import { Title } from '@mantine/core';
+import useFetch from '../../../hooks/useFetch';
 
 const LocationDetailPage = () => {
   const { id } = useParams();
@@ -10,7 +11,7 @@ const LocationDetailPage = () => {
 
   return data && (
     <div>
-      <h1>{data.name}</h1>
+      <Title order={1}>{data.name}</Title>
       <p>Type: {data.type}</p>
       <p>Dimension: {data.dimension}</p>
       <p>Residents: {data.residents.length}</p>

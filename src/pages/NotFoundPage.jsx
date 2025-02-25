@@ -1,7 +1,9 @@
+import { Title } from '@mantine/core';
+
 const NotFoundPage = () => {
   return (
     <div>
-      <h1>404 Not found</h1>
+      <Title order={1}>404 Not found</Title>
     </div>
   );
 };
