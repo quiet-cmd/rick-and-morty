@@ -1,10 +1,12 @@
-import {lazy} from 'react'
+import { lazy } from 'react'
 import { Routes, Route, NavLink } from 'react-router-dom'
 import { AppShell, Group  } from '@mantine/core';
 
 import PrivateWrapper from './components/PrivateWrapper';
 import SuspenseWrapper from './components/SuspenseWrapper';
+import ErrorBoundary from './components/ErrorBoundary'
 import { useAuth } from './features/auth'
+import { useOnlineStatus } from './hooks';
 
 const MainPage = lazy(() => import('./features/main/MainPage'));
 const CharactersPage = lazy(() => import('./features/characters/CharactersPage'));
@@ -19,6 +21,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   const { isAuth } = useAuth();
+  const isOnline = useOnlineStatus();
 
   return (
     <AppShell header={{ height: 60 }} padding="md">
@@ -38,7 +41,7 @@ function App() {
 
       <AppShell.Main>
         <Routes>
-          <Route element={<SuspenseWrapper />}>
+          <Route element={<ErrorBoundary isOnline={isOnline}><SuspenseWrapper /></ErrorBoundary>}>
             <Route path='/' element={<MainPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/logout' element={<LogoutPage />} />

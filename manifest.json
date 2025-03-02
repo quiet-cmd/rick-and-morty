@@ -1,0 +1,47 @@
+{
+    "short_name": "Rick and Morty",
+    "name": "Rick and Morty",
+    "icons": [
+        {
+            "src": "assets/i-dont-know-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/i-dont-know-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/i-dont-know-128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/i-dont-know-64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/i-dont-know-32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/i-dont-know-24.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/i-dont-know-16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#282c34",
+    "background_color": "#ffffff",
+    "orientation": "portrait"
+}

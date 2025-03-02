@@ -1,8 +1,7 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Title } from '@mantine/core';
-import useFetch from '../../hooks/useFetch';
-import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
+import { useInfiniteScroll, useFetch } from '../../hooks';
 import DynamicImport from '../../components/DynamicImport';
 
 const LocationsPage = () => {

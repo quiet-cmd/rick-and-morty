@@ -5,6 +5,8 @@ class ErrorBoundary extends Component {
   constructor(props) {
     super(props)
 
+    this.props.isOnline;
+
     this.state = {
       hasError: false,
     }
@@ -20,10 +22,16 @@ class ErrorBoundary extends Component {
     console.log('ErrorBoundary error', error);
     console.log('ErrorBoundary errorInfo', errorInfo);
   }
+  
+  
 
   render() {
     if(this.state.hasError) {
-      return <h2>Sad UwU</h2>;
+      return (
+        <>
+          <Title order={2}>{this.props.isOnline ? 'Sad UwU' : 'offline'}</Title>
+        </>  
+      );
     }
         
     return this.props.children;

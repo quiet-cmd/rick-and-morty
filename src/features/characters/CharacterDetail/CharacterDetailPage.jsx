@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Title } from '@mantine/core';
-import useFetch from '../../../hooks/useFetch';
+import { useFetch } from '../../../hooks';
 
 const CharacterDetailPage = () => {
   const { id } = useParams();
